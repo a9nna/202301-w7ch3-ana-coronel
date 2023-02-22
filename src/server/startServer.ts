@@ -1,5 +1,5 @@
-import { type CustomError } from "./CustomError.js";
-import { app } from "./index.js";
+import { type CustomError } from "../CustomError.js";
+import app from "./index.js";
 
 const startServer = async (port: number) =>
   new Promise((resolve, reject) => {
