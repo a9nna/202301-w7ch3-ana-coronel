@@ -7,7 +7,7 @@ const connectDatabase = async (url: string) => {
     virtuals: true,
     transform(doc, ret) {
       delete ret._id;
-      delete ret._v;
+      delete ret.__v;
     },
   });
 
