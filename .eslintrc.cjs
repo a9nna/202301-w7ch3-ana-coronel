@@ -9,6 +9,12 @@ module.exports = {
     {
       extends: ["xo-typescript", "prettier"],
       files: ["*.ts", "*.tsx"],
+      rules: {
+        "@typescript-eslint/consistent-type-definitions": [
+          "error",
+          "interface",
+        ],
+      },
     },
   ],
   parserOptions: {
@@ -16,6 +22,6 @@ module.exports = {
     sourceType: "module",
   },
   rules: {
-    "@typescript-eslint/consistent-type-definitions": ["error", "interface"],
+    "no-implicit-coercion": [2, { number: false }],
   },
 };
