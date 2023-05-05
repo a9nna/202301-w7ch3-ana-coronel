@@ -31,6 +31,7 @@ const usersSchema = new Schema({
     required: true,
     minLength: 8,
   },
+  avatar: Object,
 });
 
 const User = model("User", usersSchema, "users");
