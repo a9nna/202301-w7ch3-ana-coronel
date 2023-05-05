@@ -1,5 +1,5 @@
 import { type NextFunction, type Request, type Response } from "express";
-import { type UserStructure } from "./types.js";
+import { type AvatarStructure, type UserStructure } from "./types.js";
 import bcryptjs from "bcryptjs";
 import User from "../../../database/models/User.js";
 import { CustomError } from "../../../CustomError.js";
@@ -20,6 +20,9 @@ export const createUser = async (
       email,
     } = req.body;
 
+    const avatar = req.file as AvatarStructure;
+    avatar.filename = avatar.originalname;
+
     const hashedPassword = await bcryptjs.hash(password, 10);
 
     const user = await User.create({
@@ -30,9 +33,10 @@ export const createUser = async (
       playSide,
       telephoneNumber,
       password: hashedPassword,
+      avatar,
     });
 
-    res.status(201).json({ user });
+    res.status(201).json({ user }).redirect("/");
   } catch (error) {
     const customError = new CustomError(
       (error as Error).message,
